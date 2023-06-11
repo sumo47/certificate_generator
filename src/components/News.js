@@ -2,8 +2,22 @@ import React, { Component } from 'react'
 import NewsItem from './NewsItem'
 import axios from 'axios';
 import Spinner from './Spinner';
+import PropTypes from 'prop-types'
 
 export class News extends Component {
+
+    static defaultProps = {
+        country: "us",
+        pageSize: 8,
+        category: "science"
+    }
+    static propTypes = {
+        country: PropTypes.string,
+        pageSize: PropTypes.number,
+        category : PropTypes.string
+
+    }
+
 
     constructor() {
         super();
@@ -12,7 +26,7 @@ export class News extends Component {
     }
 
     async componentDidMount() { //runs after render()
-        let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=0dc0dd09ab144690bd156c1fb8eec4ed&page=1&pageSize=${this.props.pageSize}`;
+        let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=0dc0dd09ab144690bd156c1fb8eec4ed&page=1&pageSize=${this.props.pageSize}`;
         this.setState({ loading: true })
         // let data = await fetch(url);
         // let parseData = await data.json();
@@ -29,10 +43,10 @@ export class News extends Component {
     }
 
     HandleOnClickNext = async () => {
-        let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=0dc0dd09ab144690bd156c1fb8eec4ed&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`;
+        let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=0dc0dd09ab144690bd156c1fb8eec4ed&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`;
         this.setState({ loading: true })
         await axios.get(url)
-            .then((response) => { this.setState({ articles: response.data.articles, loading:false }) })
+            .then((response) => { this.setState({ articles: response.data.articles, loading: false }) })
             .catch((error) => { console.log(error.message) })
         this.setState({ page: this.state.page + 1 })
         console.log("Next")
@@ -40,10 +54,10 @@ export class News extends Component {
 
     HandleOnClickPrevious = async () => {
         console.log("Previous")
-        let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=0dc0dd09ab144690bd156c1fb8eec4ed&page=${this.state.page - 1}&pageSize=${this.props.pageSize}`;
+        let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=0dc0dd09ab144690bd156c1fb8eec4ed&page=${this.state.page - 1}&pageSize=${this.props.pageSize}`;
         this.setState({ loading: true })
         await axios.get(url)
-            .then((response) => { this.setState({ articles: response.data.articles , loading:false}) })
+            .then((response) => { this.setState({ articles: response.data.articles, loading: false }) })
             .catch((error) => { console.log(error.message) })
         this.setState({ page: this.state.page - 1 })
     }
@@ -59,7 +73,7 @@ export class News extends Component {
                             <NewsItem
                                 title={element.title}
                                 description={element.description}
-                                imageUrl={element.urlToImage}
+                                imageUrl={element.urlToImage ? element.urlToImage : "https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled.png"}
                                 ReadMore={element.url} />
                         </div>
                     })}
