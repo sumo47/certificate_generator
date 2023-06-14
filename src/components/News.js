@@ -39,9 +39,11 @@ export class News extends Component {
 
 
     async updateNews() {
+        this.props.setProgress(10);
         console.log(this.articles, this.totalResults)
         let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=d093053d72bc40248998159804e0e67d&page=${this.state.page}&pageSize=${this.props.pageSize}`;
         this.setState({ loading: true })
+        this.props.setProgress(30);
         await axios.get(url)
         .then((res)=>{
             this.setState({
@@ -51,6 +53,8 @@ export class News extends Component {
             })  
         })
         console.log(this.state.totalResults)
+        this.props.setProgress(100);
+
     }
 
     async componentDidMount() { //runs after render()
