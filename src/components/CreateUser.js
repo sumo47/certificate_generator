@@ -27,8 +27,9 @@ function Create(props) {
     }
 
     return (
-        <div className='mx-3'>
-            <h2 className='mt-5'>Create an Account to use Notebook</h2>
+        <div className='container d-flex justify-content-center'>
+        <div className='mx-3 createUser'>
+            <h2 className='mt-5'>Create an User</h2>
             <form onSubmit={handleClick}>
                 <div className="form-group">
                     <label htmlFor="name">Name</label>
@@ -46,8 +47,9 @@ function Create(props) {
                     <label htmlFor="Number">Mobile Number</label>
                     <input type="number" className="form-control mb-3" id="mobile" onChange={onChange} required aria-describedby="emailHelp" placeholder="Enter mObile Number" />
                 </div>
-                <button type="submit" className="btn btn-primary">SignUp</button>
+                <button type="submit" className="btn btn-primary">Add</button>
             </form>
+        </div>
         </div>
     )
 }

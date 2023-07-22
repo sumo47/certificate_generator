@@ -1,6 +1,9 @@
 body {
     background-color: rgb(128, 128, 128);
 }
+.createUser {
+    width: 500px;
+}
 
 nav {
     color: white;
