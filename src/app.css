@@ -1,0 +1,75 @@
+body {
+    background-color: rgb(128, 128, 128);
+}
+
+nav {
+    color: white;
+    background-color: black;
+}
+/* 
+.containerInput {
+    display: flex;
+    justify-content: center;
+    height: 7vh;
+} */
+
+.main {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.card {
+    height: auto;
+    width: 18rem;
+    background-color: aliceblue;
+    border-radius: 7px;
+    box-shadow: 50px 10px 200px black;
+    margin-bottom: 10px;
+    transition: all ease 0.1s;
+}
+.card:hover{
+    box-shadow: 5px 10px 0px black;
+}
+
+.dataContainer {
+    padding: 10px;
+    word-wrap: break-word;
+}
+
+p {
+    padding: 2px 0;
+    margin: 0;
+}
+
+.deleteButton {
+    display: flex;
+    justify-content: flex-end;
+    margin-left: auto;
+    border: none;
+    border-radius: 7px;
+}
+
+@media (max-width: 768px) {
+    .containerInput {
+        height: auto;
+    }
+
+    .main {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .deleteButton {
+        margin-left: 0;
+        margin-top: 5px;
+        width: 100%;
+        justify-content: flex-end;
+    }
+}
