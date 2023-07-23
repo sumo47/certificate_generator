@@ -16,8 +16,6 @@ export default function DeleteButton(props) {
   }
 
   return (
-    <div>
-      <button className="deleteButton" onClick={handleClick}>Delete</button>
-    </div>
+      <button className="btn btn-danger" onClick={handleClick}>Delete</button>
   );
 }

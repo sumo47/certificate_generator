@@ -88,16 +88,24 @@ export default function HomePage() {
           return (
             <div className="card mx-3 my-3" key={x._id}>
               <div className="dataContainer">
-                <label>Name : </label>
-                <p>
-                  <strong>{x.firstName + x.lastName}</strong>
-                </p>
-                <label>Email : </label>
-                <p>{x.email}</p>
-                <label>Mobile : </label>
-                <p>{x.mobile}</p>
-                <button onClick={() => { handleClick(x._id) }}>Update</button>
-                <DeleteButton itemId={x._id} onDelete={handleRefresh} />
+                <div className="container d-flex">
+                  <label>Name : </label>
+                  <p>
+                    <strong>{x.firstName + x.lastName}</strong>
+                  </p>
+                </div>
+                <div className=" container email d-flex">
+                  <label>Email :</label>
+                  <p>{`${x.email}`}</p>
+                </div>
+                <div className="container d-flex">
+                  <label>Mobile : </label>
+                  <p>{x.mobile}</p>
+                </div>
+                <div className="d-flex justify-content-between  mt-3">
+                  <button className="btn btn-warning mx-2" onClick={() => { handleClick(x._id) }}>Update</button>
+                  <DeleteButton itemId={x._id} onDelete={handleRefresh} />
+                </div>
               </div>
             </div>
           );
