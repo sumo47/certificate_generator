@@ -91,19 +91,19 @@ export default function HomePage() {
                 <div className="container d-flex">
                   <label>Name : </label>
                   <p>
-                    <strong>{x.firstName + x.lastName}</strong>
+                    <strong>{`- ${x.firstName} ${x.lastName}`}</strong>
                   </p>
                 </div>
                 <div className=" container email d-flex">
                   <label>Email :</label>
-                  <p>{`${x.email}`}</p>
+                  <p>{`- ${x.email}`}</p>
                 </div>
                 <div className="container d-flex">
                   <label>Mobile : </label>
-                  <p>{x.mobile}</p>
+                  <p>{"- "+x.mobile}</p>
                 </div>
                 <div className="d-flex justify-content-between  mt-3">
-                  <button className="btn btn-warning mx-2" onClick={() => { handleClick(x._id) }}>Update</button>
+                  <button className="btn btn-warning" onClick={() => { handleClick(x._id) }}>Update</button>
                   <DeleteButton itemId={x._id} onDelete={handleRefresh} />
                 </div>
               </div>
