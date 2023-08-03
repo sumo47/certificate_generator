@@ -18,7 +18,7 @@ function SignUp(props) {
   }
 
   return (
-    <div>
+    <div className='container'>
       <h2 className='mt-5'>Create an Account to use Notebook</h2>
       <form onSubmit={handleClick}>
         <div className="form-group">
