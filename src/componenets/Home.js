@@ -1,10 +1,14 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { PDFDocument, rgb } from 'pdf-lib'
 import PDF from '../asset/Certificate.pdf'
 import Font from '../asset/font.ttf'
 import fontkit from '@pdf-lib/fontkit';
+import NoteContext from '../context/NoteContext'
 
-function Home() {
+function Home(props) {
+
+  let {cerId, certificate} = useContext(NoteContext)
+  let{showAlert} = props
 
   const [state, setstate] = useState({ name: "", subtitle: "", signature: "", date: "" })
 
@@ -17,6 +21,9 @@ function Home() {
   }
 
   const Generate = async () => {
+
+    certificate(state, showAlert)
+
     const pdf = await fetch(PDF)
       .then((res) => { return res.arrayBuffer() })
 
@@ -65,13 +72,7 @@ function Home() {
     const uri = await pdfDoc.saveAsBase64({ dataUri: true })
 
     document.querySelector("#myPdf").src = uri
-
-    
   }
-
-
-
-
   return (<>
     <div className='container my-3 w-50'>
       <form onSubmit={handleClick}>

@@ -27,7 +27,7 @@ function App() {
                 <Navbar />
                 <Alert alert = {alert} />
                 <Routes>
-                    <Route path='/' element={<Home />} />
+                    <Route path='/' element={<Home showAlert={alertFunction} />} />
                     <Route path='/login' element={<Login showAlert={alertFunction} />} />
                     <Route path='/signup' element={<SignUp showAlert = {alertFunction}/>} />
                 </Routes>

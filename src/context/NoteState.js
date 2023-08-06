@@ -2,10 +2,13 @@ import NoteContext from './NoteContext'
 import { useNavigate } from 'react-router-dom'
 
 import axios from 'axios'
+import { useState } from 'react'
 
 const NoteState = (props) => {
 
-  const url = "https://living-possible-wish.glitch.me";
+  const [cerId, setCerId] = useState("")
+
+  const url = "https://snow-chartreuse-peace.glitch.me";
   // const url = "http://localhost:4000";
 
   let navigate = useNavigate()
@@ -53,8 +56,25 @@ const NoteState = (props) => {
       })
   }
 
+  const certificate = async (credential, showAlert) => {
+    const { name, subtitle, date } = credential
+    axios.post(`${url}/addCertificate`, { name, subtitle, date }, { headers: { 'x-api-key': localStorage.getItem('x-api-key') } })
+      .then((res) => {
+        setCerId(res.data.message)
+        console.log(res.data, cerId)
+        showAlert("Certificate Generated successfully!", "success")
+      })
+      .catch((err) => {
+        if (!err.response.data.status) {
+          showAlert(`${err.response.data.message}`, "danger")
+        } else {
+          console.log(err)
+        }
+      })
+  }
+
   return (
-    <NoteContext.Provider value={{ login, SignUp}} >
+    <NoteContext.Provider value={{ login, SignUp, certificate, cerId }} >
       {props.children}
     </NoteContext.Provider>
   )
