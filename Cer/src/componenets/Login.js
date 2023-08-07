@@ -1,23 +1,12 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useContext, useState } from 'react'
 import NoteContext from '../context/NoteContext'
-import {useNavigate} from 'react-router-dom'
 
 
 function Login(props) {
 
-    const Navigate = useNavigate()
-
     const { login } = useContext(NoteContext)
     const [state, setState] = useState({ email: "", password: "" })
     let { showAlert } = props
-
-
-    useEffect(() => {
-        if(localStorage.getItem("x-api-key")){
-            Navigate('/')
-        }
-    }, [])
-    
 
     const onChange = (e) => {
         setState({ ...state, [e.target.id]: e.target.value })

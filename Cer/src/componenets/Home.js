@@ -1,29 +1,16 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useContext, useState } from 'react'
 import { PDFDocument, rgb } from 'pdf-lib'
 import PDF from '../asset/Certificate.pdf'
 import Font from '../asset/font.ttf'
 import fontkit from '@pdf-lib/fontkit';
 import NoteContext from '../context/NoteContext'
-import { useNavigate } from 'react-router-dom'
-
 
 function Home(props) {
 
   let {cerId, certificate} = useContext(NoteContext)
   let{showAlert} = props
-  const Navigate = useNavigate()
 
-  
   const [state, setstate] = useState({ name: "", subtitle: "", signature: "", date: "" })
-
-  useEffect(() => {
-    if (!localStorage.getItem('x-api-key')) {
-      Navigate('/login')
-      showAlert("Please Login first", "warning")
-    }
-    // eslint-disable-next-line
-}, [])
-
 
   const onChange = (e) => {
     setstate({ ...state, [e.target.id]: e.target.value })
@@ -82,17 +69,9 @@ function Home(props) {
       font:myfont
     })
 
-    firstPage.drawText(cerId,{
-        x:200,
-        y:30,
-        color:rgb(0.7, 0.6, 0.4),
-        size:15
-    })  
-
     const uri = await pdfDoc.saveAsBase64({ dataUri: true })
 
     document.querySelector("#myPdf").src = uri
-    console.log(cerId)
   }
   return (<>
     <div className='container my-3 w-50'>
@@ -115,7 +94,6 @@ function Home(props) {
         </div>
 
         <button type="submit" className="btn btn-primary my-2" onClick={Generate}>Generate Cetificate</button>
-        <button type="" className="btn btn-primary my-2" onClick={()=>{Navigate('/check')}}>Check Cetificate</button>
       </form>
     </div>
       <iframe  src='' id='myPdf' style={{ width: "500px", height: "500px" , display:"flex", margin:"auto"}}></iframe>

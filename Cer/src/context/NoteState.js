@@ -73,10 +73,6 @@ const NoteState = (props) => {
       })
   }
 
-  const CertCheck = async(credential, showAlert)=>{
-
-  }
-
   return (
     <NoteContext.Provider value={{ login, SignUp, certificate, cerId }} >
       {props.children}

@@ -6,7 +6,6 @@ import Navbar from './componenets/Navbar'
 import NoteState from './context/NoteState'
 import Home from './componenets/Home'
 import Alert from './componenets/Alert'
-import Check from './componenets/Check'
 
 function App() {
 
@@ -28,12 +27,9 @@ function App() {
                 <Navbar />
                 <Alert alert = {alert} />
                 <Routes>
-                    
                     <Route path='/' element={<Home showAlert={alertFunction} />} />
-                    <Route path='/signup' element={<SignUp showAlert = {alertFunction}/>} />
                     <Route path='/login' element={<Login showAlert={alertFunction} />} />
-                    <Route path='/check' element={<Check showAlert = {alertFunction}/>} />
-
+                    <Route path='/signup' element={<SignUp showAlert = {alertFunction}/>} />
                 </Routes>
             </NoteState>
         </BrowserRouter>
