@@ -37,7 +37,6 @@ const NoteState = (props) => {
       })
   }
 
-
   //*SignUp
   const SignUp = async (credentials, showAlert) => {
     const { name, email, password } = credentials
