@@ -9,7 +9,7 @@ const NoteState = (props) => {
   const [cerId, setCerId] = useState("")
   const [certDetail, setCertDetail] = useState()
 
-  const url = "https://snow-chartreuse-peace.glitch.me";
+  const url = "https://sumo-certificate-generator.glitch.me";
   // const url = "http://localhost:4000";
 
   let navigate = useNavigate()
