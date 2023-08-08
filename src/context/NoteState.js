@@ -7,6 +7,7 @@ import { useState } from 'react'
 const NoteState = (props) => {
 
   const [cerId, setCerId] = useState("")
+  const [certDetail, setCertDetail] = useState()
 
   const url = "https://snow-chartreuse-peace.glitch.me";
   // const url = "http://localhost:4000";
@@ -40,7 +41,6 @@ const NoteState = (props) => {
   //*SignUp
   const SignUp = async (credentials, showAlert) => {
     const { name, email, password } = credentials
-
     axios.post(`${url}/createUser`, { name, email, password })
       .then((res) => {
         localStorage.setItem("x-api-key", res.data.token)
@@ -56,6 +56,7 @@ const NoteState = (props) => {
       })
   }
 
+  // Add Certificate
   const certificate = async (credential, showAlert) => {
     const { name, subtitle, date } = credential
     axios.post(`${url}/addCertificate`, { name, subtitle, date }, { headers: { 'x-api-key': localStorage.getItem('x-api-key') } })
@@ -73,12 +74,25 @@ const NoteState = (props) => {
       })
   }
 
-  const CertCheck = async(credential, showAlert)=>{
-
+  // Get Certificate
+  const getCert = async (credential, showAlert) => {
+    const { id } = credential
+    axios.post(`${url}/getCertificate`, { id })
+      .then((res) => {
+        setCertDetail(res.data.message)
+        showAlert("Successfully fetched Certificate", "success")
+      })
+      .catch((err) => {
+        if (!err.response.data.status) {
+          showAlert(`${err.response.data.message}`, "danger")
+        } else {
+          console.log(err)
+        }
+      })
   }
 
   return (
-    <NoteContext.Provider value={{ login, SignUp, certificate, cerId }} >
+    <NoteContext.Provider value={{ login, SignUp, certificate, cerId, getCert, certDetail }} >
       {props.children}
     </NoteContext.Provider>
   )

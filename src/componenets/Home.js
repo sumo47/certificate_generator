@@ -114,8 +114,8 @@ function Home(props) {
           <input type="Text" className="form-control" id="date" onChange={onChange} placeholder="Enter Date" required />
         </div>
 
-        <button type="submit" className="btn btn-primary my-2" onClick={Generate}>Generate Cetificate</button>
-        <button type="" className="btn btn-primary my-2" onClick={()=>{Navigate('/check')}}>Check Cetificate</button>
+        <button type="submit" className="btn btn-primary my-2" onClick={Generate}>Generate</button>
+        <button type="" className="btn btn-warning my-2 mx-2" onClick={()=>{Navigate('/check')}}>Check</button>
       </form>
     </div>
       <iframe  src='' id='myPdf' style={{ width: "500px", height: "500px" , display:"flex", margin:"auto"}}></iframe>
