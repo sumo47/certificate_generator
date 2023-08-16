@@ -35,9 +35,9 @@ export default function Navbar() {
             </li>
           </ul>
           {!localStorage.getItem('x-api-key') ? <form className="d-flex" role="search">
-            {Location.pathname === '/Login' ? <Link className='btn btn-primary mx-2' to="/SignUp">SignUp</Link> :
+            {Location.pathname === '/login' ? <Link className='btn btn-primary mx-2' to="/SignUp">SignUp</Link> :
               <div>
-                <Link className='btn btn-primary mx-2' to="/Login">Login</Link>
+                <Link className='btn btn-primary mx-2' to="/login">Login</Link>
               </div>
             }
           </form> :

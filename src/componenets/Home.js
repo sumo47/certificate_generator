@@ -5,17 +5,13 @@ import Font from '../asset/font.ttf'
 import fontkit from '@pdf-lib/fontkit';
 import NoteContext from '../context/NoteContext'
 import { useNavigate } from 'react-router-dom'
-import mongoose from 'mongoose'
-
 
 function Home(props) {
 
   let { cerId, certificate } = useContext(NoteContext)
   let { showAlert } = props
 
-  // const [url, setUrl] = useState()
   const Navigate = useNavigate()
-
 
   const [state, setstate] = useState({ name: "", subtitle: "", signature: "", date: "" })
 
@@ -26,14 +22,6 @@ function Home(props) {
     }
     // eslint-disable-next-line
   }, [])
-
-  // useEffect(() => {
-  //   if(cerId.split("").length === 24){
-  //     document.querySelector("#myPdf").src = url
-  //   }
-
-  // }, [cerId])
-
 
   const generate = async () => {
     const pdf = await fetch(PDF)
