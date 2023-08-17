@@ -14,7 +14,7 @@ export default function Navbar() {
 
   const handleLogout = () => {
     localStorage.removeItem('x-api-key') 
-    Navigate('/Login')
+    Navigate('/login')
   }
 
 
